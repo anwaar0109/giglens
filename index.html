@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GigLens — Fiverr Keyword Research</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #0e0e10;
+  --bg2:      #16161a;
+  --bg3:      #1e1e24;
+  --bg4:      #26262e;
+  --border:   rgba(255,255,255,0.08);
+  --border2:  rgba(255,255,255,0.05);
+  --text:     #e8e8ec;
+  --text2:    #a0a0b0;
+  --text3:    #5a5a70;
+  --accent:   #3ecf72;
+  --accent-d: #1a6b3a;
+  --accent-bg:#0d2b1a;
+  --amber:    #f5a623;
+  --amber-bg: #2a1f0a;
+  --red:      #e05252;
+  --red-bg:   #2a1010;
+  --blue:     #5b9cf6;
+  --rad:      5px;
+  --rad2:     10px;
+  --rad3:     14px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+
+/* HEADER */
+header {
+  border-bottom: 1px solid var(--border);
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+  background: var(--bg2);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.logo-dot {
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.header-actions { display: flex; gap: 8px; align-items: center; }
+
+/* BUTTONS */
+.btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 15px;
+  border-radius: var(--rad);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s;
+  background: transparent;
+  color: var(--text2);
+  white-space: nowrap;
+  line-height: 1;
+}
+.btn:hover { background: var(--bg4); color: var(--text); border-color: rgba(255,255,255,0.15); }
+
+.btn-primary {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+.btn-primary:hover { background: #5cf090; border-color: #5cf090; color: #000; }
+
+.btn-danger {
+  color: var(--red);
+  border-color: rgba(224,82,82,0.3);
+}
+.btn-danger:hover { background: var(--red-bg); border-color: var(--red); }
+
+/* LAYOUT */
+.app {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 36px 24px 80px;
+}
+
+.page-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.page-sub {
+  font-size: 13px;
+  color: var(--text3);
+  margin-bottom: 30px;
+}
+
+/* GLOBAL STATS */
+.global-stats {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--rad3);
+  padding: 20px;
+  margin-bottom: 24px;
+  display: none;
+}
+
+.gs-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 14px;
+}
+
+.gs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px,1fr));
+  gap: 10px;
+}
+
+.gs-box {
+  background: var(--bg3);
+  border-radius: var(--rad2);
+  padding: 12px 14px;
+  text-align: center;
+}
+
+.gs-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--accent);
+  display: block;
+}
+
+.gs-name {
+  font-size: 11px;
+  color: var(--text3);
+  margin-top: 2px;
+}
+
+/* RECORD BAR */
+.record-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.record-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--text3);
+}
+
+.saved-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+/* KEYWORD CARDS */
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.kcard {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--rad3);
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.kcard:hover { border-color: rgba(255,255,255,0.13); }
+
+.kcard-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 18px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.kcard-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--text3);
+  min-width: 20px;
+}
+
+.kcard-kw {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.comp-pill {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-family: 'DM Mono', monospace;
+  flex-shrink: 0;
+  letter-spacing: 0.3px;
+}
+.comp-low  { background: var(--accent-bg); color: var(--accent); }
+.comp-med  { background: var(--amber-bg);  color: var(--amber); }
+.comp-high { background: var(--red-bg);    color: var(--red); }
+
+.kcard-chevron {
+  font-size: 10px;
+  color: var(--text3);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.kcard.open .kcard-chevron { transform: rotate(180deg); }
+
+.kcard-body {
+  display: none;
+  border-top: 1px solid var(--border2);
+  padding: 20px 18px;
+}
+.kcard.open .kcard-body { display: block; }
+
+/* SECTIONS */
+.sec { margin-bottom: 22px; }
+
+.sec-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border2);
+}
+
+/* FORM ROWS */
+.frow { display: grid; gap: 10px; margin-bottom: 10px; }
+.frow.c2 { grid-template-columns: 1fr 1fr; }
+.frow.c4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+.field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text2);
+  margin-bottom: 5px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--rad);
+  background: var(--bg3);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus { border-color: var(--accent); }
+.field select option { background: #1e1e24; }
+.field textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+
+/* GIG ENTRIES — each box = one competitor gig (title + link + description together) */
+.gig-entries { display: flex; flex-direction: column; gap: 10px; }
+
+.gig-entry {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--rad2);
+  padding: 14px;
+}
+
+.gig-entry-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.gig-num-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  background: var(--accent-bg);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* THE FIXED DELETE BUTTON */
+.gig-del-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(224,82,82,0.25);
+  border-radius: var(--rad);
+  background: transparent;
+  color: var(--text3);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  transition: all 0.15s;
+  padding: 0;
+  font-family: sans-serif;
+}
+.gig-del-btn:hover { background: var(--red-bg); color: var(--red); border-color: var(--red); }
+
+.gig-field { margin-bottom: 8px; }
+.gig-field:last-child { margin-bottom: 0; }
+
+.gig-field label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 4px;
+}
+
+.gig-field input,
+.gig-field textarea {
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--rad);
+  background: var(--bg4);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.gig-field input:focus,
+.gig-field textarea:focus { border-color: var(--accent); }
+.gig-field textarea { resize: vertical; min-height: 72px; line-height: 1.5; }
+
+.btn-add-gig {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: 1px dashed var(--border);
+  border-radius: var(--rad2);
+  color: var(--text3);
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.btn-add-gig:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+
+/* STAT ROW */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border2);
+}
+
+.stat-box {
+  background: var(--bg3);
+  border-radius: var(--rad);
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.stat-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+  display: block;
+}
+.stat-box:first-child .stat-val { color: var(--accent); }
+
+.stat-lbl {
+  font-size: 10px;
+  color: var(--text3);
+  margin-top: 2px;
+}
+
+/* CARD FOOTER */
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border2);
+}
+
+/* ADD ENTRY */
+.add-entry-btn {
+  width: 100%;
+  padding: 18px;
+  border: 2px dashed var(--border);
+  border-radius: var(--rad3);
+  background: transparent;
+  color: var(--text3);
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.add-entry-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+
+/* EMPTY */
+.empty-state { text-align: center; padding: 60px 20px; }
+.empty-icon { font-size: 36px; margin-bottom: 12px; }
+.empty-state p { font-size: 15px; color: var(--text2); margin-bottom: 4px; font-weight: 500; }
+.empty-state small { font-size: 13px; color: var(--text3); }
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--bg4);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 13px;
+  padding: 10px 16px;
+  border-radius: var(--rad2);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.2s;
+  pointer-events: none;
+  z-index: 999;
+  font-family: 'DM Sans', sans-serif;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* PDF LOADING OVERLAY */
+.pdf-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.pdf-overlay.on { display: flex; }
+.pdf-overlay span {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  padding: 16px 28px;
+  border-radius: var(--rad2);
+}
+
+@media (max-width: 640px) {
+  header { padding: 0 14px; }
+  .app { padding: 20px 14px 80px; }
+  .frow.c4 { grid-template-columns: 1fr 1fr; }
+  .frow.c2 { grid-template-columns: 1fr; }
+  .stat-row { grid-template-columns: repeat(3,1fr); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span class="logo-dot"></span> GigLens</div>
+  <div class="header-actions">
+    <button class="btn" onclick="clearAll()">Clear all</button>
+    <button class="btn" onclick="exportPDF()">Export PDF</button>
+    <button class="btn btn-primary" onclick="addKeyword()">+ New keyword</button>
+  </div>
+</header>
+
+<div class="app">
+  <div class="page-title">Keyword Research</div>
+  <div class="page-sub">Each gig entry keeps its title, link &amp; description together — no more guessing which belongs to which.</div>
+
+  <div class="global-stats" id="globalStats">
+    <div class="gs-label">Overview</div>
+    <div class="gs-grid">
+      <div class="gs-box"><span class="gs-val" id="gs-kw">0</span><div class="gs-name">Keywords</div></div>
+      <div class="gs-box"><span class="gs-val" id="gs-gigs">0</span><div class="gs-name">Gig entries</div></div>
+      <div class="gs-box"><span class="gs-val" id="gs-tr">0</span><div class="gs-name">Top Rated (avg)</div></div>
+      <div class="gs-box"><span class="gs-val" id="gs-l2">0</span><div class="gs-name">Level 2 (avg)</div></div>
+      <div class="gs-box"><span class="gs-val" id="gs-l1">0</span><div class="gs-name">Level 1 (avg)</div></div>
+      <div class="gs-box"><span class="gs-val" id="gs-ns">0</span><div class="gs-name">New Sellers (avg)</div></div>
+    </div>
+  </div>
+
+  <div class="record-bar">
+    <span class="record-count" id="recCount">0 records</span>
+    <span class="saved-tag" id="savedTag">● saved</span>
+  </div>
+
+  <div class="cards-list" id="cardsList"></div>
+
+  <button class="add-entry-btn" onclick="addKeyword()">
+    <span style="font-size:18px;line-height:1">+</span> Add keyword research entry
+  </button>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="pdf-overlay" id="pdfOverlay"><span>Generating PDF…</span></div>
+
+<script>
+/* ================================================================
+   DATA MODEL
+   records = [{
+     id, keyword, competition,
+     topRated, level2, level1, newSellers, notes,
+     gigs: [{ title, link, description }, ...]
+   }]
+================================================================ */
+
+const STORAGE_KEY = 'giglens_v3';
+let records = [];
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) records = JSON.parse(raw);
+  } catch(e) { records = []; }
+  render();
+}
+
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+  } catch(e) { toast('Storage error — cannot save'); }
+}
+
+/* ── FACTORIES ── */
+function mkRecord() {
+  return {
+    id: Date.now().toString(36) + Math.random().toString(36).slice(2,6),
+    keyword: '', competition: 'medium',
+    topRated: '', level2: '', level1: '', newSellers: '',
+    notes: '',
+    gigs: [mkGig()]
+  };
+}
+function mkGig() { return { title: '', link: '', description: '' }; }
+
+/* ── KEYWORD ACTIONS ── */
+function addKeyword() {
+  records.unshift(mkRecord());
+  save();
+  render();
+  const first = document.querySelector('.kcard');
+  if (first) first.classList.add('open');
+}
+
+function deleteKeyword(id) {
+  if (!confirm('Delete this keyword entry?')) return;
+  records = records.filter(r => r.id !== id);
+  save(); render(); toast('Deleted');
+}
+
+function duplicateKeyword(id) {
+  const r = records.find(r => r.id === id);
+  if (!r) return;
+  const copy = JSON.parse(JSON.stringify(r));
+  copy.id = Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+  copy.keyword = (copy.keyword || 'Untitled') + ' (copy)';
+  records.splice(records.findIndex(r => r.id === id) + 1, 0, copy);
+  save(); render(); toast('Duplicated');
+}
+
+function clearAll() {
+  if (!records.length) return;
+  if (!confirm('Delete ALL entries? Cannot be undone.')) return;
+  records = []; save(); render(); toast('Cleared');
+}
+
+/* ── FIELD UPDATES ── */
+function setField(id, field, value) {
+  const r = records.find(r => r.id === id);
+  if (!r) return;
+  r[field] = value;
+  save();
+  // live header update
+  const card = document.querySelector(`.kcard[data-id="${id}"]`);
+  if (!card) return;
+  if (field === 'keyword') {
+    const el = card.querySelector('.kcard-kw');
+    if (el) el.textContent = value || '(untitled)';
+  }
+  if (field === 'competition') {
+    const el = card.querySelector('.comp-pill');
+    if (el) {
+      el.className = 'comp-pill ' + compClass(value);
+      el.textContent = compLabel(value);
+    }
+  }
+  if (['topRated','level2','level1','newSellers'].includes(field)) {
+    const el = document.getElementById('stats-' + id);
+    if (el) el.innerHTML = buildStats(r);
+  }
+  updateGlobalStats();
+}
+
+function setGigField(id, idx, field, value) {
+  const r = records.find(r => r.id === id);
+  if (r && r.gigs[idx]) { r.gigs[idx][field] = value; save(); }
+}
+
+/* ── GIG ACTIONS ── */
+function addGig(id) {
+  const r = records.find(r => r.id === id);
+  if (!r) return;
+  r.gigs.push(mkGig());
+  save();
+  renderGigs(id);
+  updateGlobalStats();
+}
+
+function deleteGig(id, idx) {
+  const r = records.find(r => r.id === id);
+  if (!r) return;
+  if (r.gigs.length <= 1) { toast('Keep at least one gig entry'); return; }
+  r.gigs.splice(idx, 1);
+  save();
+  renderGigs(id);
+  updateGlobalStats();
+}
+
+/* ── UTILITIES ── */
+function esc(s) {
+  return String(s || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function compClass(c) {
+  return c === 'low' ? 'comp-low' : c === 'high' ? 'comp-high' : 'comp-med';
+}
+
+function compLabel(c) {
+  c = c || 'medium';
+  return c.charAt(0).toUpperCase() + c.slice(1);
+}
+
+function buildStats(r) {
+  const tr=parseInt(r.topRated)||0, l2=parseInt(r.level2)||0,
+        l1=parseInt(r.level1)||0,  ns=parseInt(r.newSellers)||0;
+  const total = tr+l2+l1+ns;
+  return `
+    <div class="stat-box"><span class="stat-val">${total}</span><div class="stat-lbl">Total</div></div>
+    <div class="stat-box"><span class="stat-val">${tr||'—'}</span><div class="stat-lbl">Top Rated</div></div>
+    <div class="stat-box"><span class="stat-val">${l2||'—'}</span><div class="stat-lbl">Level 2</div></div>
+    <div class="stat-box"><span class="stat-val">${l1||'—'}</span><div class="stat-lbl">Level 1</div></div>
+    <div class="stat-box"><span class="stat-val">${ns||'—'}</span><div class="stat-lbl">New</div></div>
+  `;
+}
+
+function updateGlobalStats() {
+  const n = records.length;
+  if (!n) return;
+  const avg = f => Math.round(records.reduce((a,r) => a+(parseFloat(r[f])||0), 0) / n);
+  const totalGigs = records.reduce((a,r) => a+(r.gigs?r.gigs.length:0), 0);
+  document.getElementById('gs-kw').textContent   = n;
+  document.getElementById('gs-gigs').textContent = totalGigs;
+  document.getElementById('gs-tr').textContent   = avg('topRated');
+  document.getElementById('gs-l2').textContent   = avg('level2');
+  document.getElementById('gs-l1').textContent   = avg('level1');
+  document.getElementById('gs-ns').textContent   = avg('newSellers');
+}
+
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(el._tid);
+  el._tid = setTimeout(() => el.classList.remove('show'), 2600);
+}
+
+/* ── RENDER ── */
+function toggleCard(id) {
+  const card = document.querySelector(`.kcard[data-id="${id}"]`);
+  if (card) card.classList.toggle('open');
+}
+
+function render() {
+  const list = document.getElementById('cardsList');
+  const gs   = document.getElementById('globalStats');
+  document.getElementById('recCount').textContent =
+    records.length + ' record' + (records.length !== 1 ? 's' : '');
+
+  if (!records.length) {
+    list.innerHTML = `<div class="empty-state">
+      <div class="empty-icon">🔍</div>
+      <p>No keyword entries yet</p>
+      <small>Click "+ Add keyword research entry" to get started</small>
+    </div>`;
+    gs.style.display = 'none';
+    return;
+  }
+
+  gs.style.display = '';
+  updateGlobalStats();
+  list.innerHTML = '';
+
+  records.forEach((r, i) => {
+    const card = document.createElement('div');
+    card.className = 'kcard';
+    card.dataset.id = r.id;
+    card.innerHTML = `
+      <div class="kcard-header" onclick="toggleCard('${r.id}')">
+        <span class="kcard-num">${String(records.length - i).padStart(2,'0')}</span>
+        <span class="kcard-kw">${esc(r.keyword) || '(untitled)'}</span>
+        <span class="comp-pill ${compClass(r.competition)}">${compLabel(r.competition)}</span>
+        <span class="kcard-chevron">▼</span>
+      </div>
+      <div class="kcard-body">
+
+        <div class="sec">
+          <div class="sec-title">Keyword &amp; Competition</div>
+          <div class="frow c2">
+            <div class="field">
+              <label>Main Keyword</label>
+              <input type="text" value="${esc(r.keyword)}" placeholder="e.g. shopify dropshipping store"
+                oninput="setField('${r.id}','keyword',this.value)">
+            </div>
+            <div class="field">
+              <label>Competition Level</label>
+              <select onchange="setField('${r.id}','competition',this.value)">
+                <option value="low"    ${r.competition==='low'?'selected':''}>Low</option>
+                <option value="medium" ${r.competition==='medium'?'selected':''}>Medium</option>
+                <option value="high"   ${r.competition==='high'?'selected':''}>High</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec">
+          <div class="sec-title">Competitor Gig Entries — title, link &amp; description stay together per gig</div>
+          <div class="gig-entries" id="gigs-${r.id}"></div>
+          <button class="btn-add-gig" onclick="addGig('${r.id}')">+ Add another gig entry</button>
+        </div>
+
+        <div class="sec">
+          <div class="sec-title">Seller Distribution on this Keyword</div>
+          <div class="frow c4">
+            <div class="field"><label>Top Rated</label>
+              <input type="number" min="0" placeholder="0" value="${esc(r.topRated)}"
+                oninput="setField('${r.id}','topRated',this.value)"></div>
+            <div class="field"><label>Level 2</label>
+              <input type="number" min="0" placeholder="0" value="${esc(r.level2)}"
+                oninput="setField('${r.id}','level2',this.value)"></div>
+            <div class="field"><label>Level 1</label>
+              <input type="number" min="0" placeholder="0" value="${esc(r.level1)}"
+                oninput="setField('${r.id}','level1',this.value)"></div>
+            <div class="field"><label>New Sellers</label>
+              <input type="number" min="0" placeholder="0" value="${esc(r.newSellers)}"
+                oninput="setField('${r.id}','newSellers',this.value)"></div>
+          </div>
+          <div class="stat-row" id="stats-${r.id}">${buildStats(r)}</div>
+        </div>
+
+        <div class="sec">
+          <div class="sec-title">Strategy Notes</div>
+          <div class="field">
+            <textarea placeholder="Pricing ideas, tags, what to include in your gig..."
+              oninput="setField('${r.id}','notes',this.value)">${esc(r.notes)}</textarea>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <button class="btn" onclick="duplicateKeyword('${r.id}')">Duplicate</button>
+          <button class="btn btn-danger" onclick="deleteKeyword('${r.id}')">Delete entry</button>
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+    renderGigs(r.id);
+  });
+}
+
+function renderGigs(id) {
+  const r = records.find(r => r.id === id);
+  const container = document.getElementById('gigs-' + id);
+  if (!r || !container) return;
+  container.innerHTML = '';
+
+  r.gigs.forEach((g, idx) => {
+    const box = document.createElement('div');
+    box.className = 'gig-entry';
+
+    // Build the header
+    const top = document.createElement('div');
+    top.className = 'gig-entry-top';
+
+    const badge = document.createElement('span');
+    badge.className = 'gig-num-badge';
+    badge.textContent = 'Gig #' + (idx + 1);
+
+    const delBtn = document.createElement('button');
+    delBtn.className = 'gig-del-btn';
+    delBtn.title = 'Remove this gig entry';
+    delBtn.innerHTML = '&times;';
+    // Use a closure so idx is captured correctly
+    delBtn.addEventListener('click', (function(capturedId, capturedIdx) {
+      return function() { deleteGig(capturedId, capturedIdx); };
+    })(id, idx));
+
+    top.appendChild(badge);
+    top.appendChild(delBtn);
+    box.appendChild(top);
+
+    // Title field
+    const fTitle = document.createElement('div');
+    fTitle.className = 'gig-field';
+    fTitle.innerHTML = '<label>Gig Title</label>';
+    const iTitle = document.createElement('input');
+    iTitle.type = 'text';
+    iTitle.value = g.title || '';
+    iTitle.placeholder = 'e.g. I will build a professional Shopify dropshipping store';
+    iTitle.addEventListener('input', (function(cid, cidx) {
+      return function() { setGigField(cid, cidx, 'title', this.value); };
+    })(id, idx));
+    fTitle.appendChild(iTitle);
+    box.appendChild(fTitle);
+
+    // Link field
+    const fLink = document.createElement('div');
+    fLink.className = 'gig-field';
+    fLink.innerHTML = '<label>Gig Link (URL)</label>';
+    const iLink = document.createElement('input');
+    iLink.type = 'url';
+    iLink.value = g.link || '';
+    iLink.placeholder = 'https://www.fiverr.com/...';
+    iLink.addEventListener('input', (function(cid, cidx) {
+      return function() { setGigField(cid, cidx, 'link', this.value); };
+    })(id, idx));
+    fLink.appendChild(iLink);
+    box.appendChild(fLink);
+
+    // Description field
+    const fDesc = document.createElement('div');
+    fDesc.className = 'gig-field';
+    fDesc.innerHTML = '<label>Gig Description / Notes</label>';
+    const tDesc = document.createElement('textarea');
+    tDesc.value = g.description || '';
+    tDesc.placeholder = 'Paste the description or write your notes about this gig...';
+    tDesc.addEventListener('input', (function(cid, cidx) {
+      return function() { setGigField(cid, cidx, 'description', this.value); };
+    })(id, idx));
+    fDesc.appendChild(tDesc);
+    box.appendChild(fDesc);
+
+    container.appendChild(box);
+  });
+}
+
+/* ================================================================
+   PDF EXPORT
+================================================================ */
+function exportPDF() {
+  if (!records.length) { toast('No data to export'); return; }
+  if (!window.jspdf || !window.jspdf.jsPDF) {
+    toast('PDF library loading — please wait a moment and try again');
+    return;
+  }
+  document.getElementById('pdfOverlay').classList.add('on');
+  setTimeout(doPDF, 80);
+}
+
+function doPDF() {
+  try {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
+    const PW=210, PH=297, ML=13, MR=13, UW=PW-ML-MR;
+
+    const C = {
+      bg:      [14,14,16],
+      surface: [30,30,36],
+      card:    [38,38,46],
+      accent:  [26,107,58],
+      accentL: [62,207,114],
+      white:   [255,255,255],
+      textD:   [220,220,230],
+      textM:   [140,140,160],
+      textL:   [90,90,110],
+      amber:   [180,120,20],
+      red:     [180,60,60],
+      blue:    [80,140,220],
+    };
+
+    let currentPage = 1;
+    let y = 0;
+
+    function paintBg() {
+      doc.setFillColor(...C.bg);
+      doc.rect(0,0,PW,PH,'F');
+    }
+
+    function newPage() {
+      doc.addPage();
+      currentPage++;
+      paintBg();
+      y = ML;
+    }
+
+    function ensureY(needed) {
+      if (y + needed > PH - 14) newPage();
+    }
+
+    function txt(s, x, yy, opts) { doc.text(String(s||''), x, yy, opts||{}); }
+
+    // ── PAGE 1 ──
+    paintBg();
+
+    // header bar
+    doc.setFillColor(...C.accent);
+    doc.rect(0,0,PW,20,'F');
+    doc.setFont('helvetica','bold');
+    doc.setFontSize(14);
+    doc.setTextColor(...C.white);
+    txt('GigLens — Fiverr Keyword Research', ML, 13);
+    doc.setFont('helvetica','normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(200,240,215);
+    txt(new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}), PW-MR, 13, {align:'right'});
+
+    y = 28;
+
+    // meta
+    doc.setFont('helvetica','normal');
+    doc.setFontSize(8);
+    doc.setTextColor(...C.textM);
+    const totalGigs = records.reduce((a,r)=>a+(r.gigs?r.gigs.length:0),0);
+    txt(`${records.length} keyword${records.length!==1?'s':''} · ${totalGigs} competitor gig entries`, ML, y);
+    y += 9;
+
+    // OVERVIEW TABLE
+    doc.setFont('helvetica','bold');
+    doc.setFontSize(8);
+    doc.setTextColor(...C.accentL);
+    txt('OVERVIEW', ML, y);
+    y += 5;
+
+    doc.autoTable({
+      startY: y,
+      head: [['#','Keyword','Competition','Gigs','Top Rated','Level 2','Level 1','New','Total']],
+      body: records.map((r,i) => {
+        const tr=parseInt(r.topRated)||0, l2=parseInt(r.level2)||0,
+              l1=parseInt(r.level1)||0, ns=parseInt(r.newSellers)||0;
+        return [
+          i+1,
+          (r.keyword||'(untitled)').slice(0,40),
+          compLabel(r.competition),
+          r.gigs ? r.gigs.length : 0,
+          tr, l2, l1, ns, tr+l2+l1+ns
+        ];
+      }),
+      theme: 'grid',
+      headStyles: {
+        fillColor: C.accent, textColor: C.white,
+        fontStyle:'bold', fontSize:7.5
+      },
+      bodyStyles: {
+        fillColor: C.surface, textColor: C.textD,
+        fontSize: 7.5,
+        lineColor: [45,45,55], lineWidth: 0.2
+      },
+      alternateRowStyles: { fillColor: C.bg },
+      columnStyles: {
+        0: { cellWidth:7,  halign:'center' },
+        1: { cellWidth:50 },
+        2: { cellWidth:22, halign:'center' },
+        3: { cellWidth:10, halign:'center' },
+        4: { cellWidth:17, halign:'center' },
+        5: { cellWidth:14, halign:'center' },
+        6: { cellWidth:14, halign:'center' },
+        7: { cellWidth:10, halign:'center' },
+        8: { cellWidth:14, halign:'center' },
+      },
+      margin: { left:ML, right:MR },
+      tableLineColor: [45,45,55],
+      tableLineWidth: 0.2
+    });
+
+    y = doc.lastAutoTable.finalY + 14;
+
+    /* ── DETAIL SECTIONS ── */
+    records.forEach((r, ri) => {
+      ensureY(28);
+
+      // Keyword header band
+      doc.setFillColor(...C.surface);
+      doc.roundedRect(ML, y, UW, 12, 1.5, 1.5, 'F');
+      doc.setFillColor(...C.accentL);
+      doc.roundedRect(ML, y, 3.5, 12, 0.5, 0.5, 'F');
+
+      doc.setFont('helvetica','bold');
+      doc.setFontSize(10);
+      doc.setTextColor(...C.textD);
+      txt(`${ri+1}. ${(r.keyword||'(untitled)').slice(0,55)}`, ML+7, y+8.5);
+
+      const cc = r.competition==='low' ? C.accentL : r.competition==='high' ? C.red : C.amber;
+      doc.setFont('helvetica','bold');
+      doc.setFontSize(7);
+      doc.setTextColor(...cc);
+      txt(compLabel(r.competition).toUpperCase(), PW-MR-2, y+8.5, {align:'right'});
+      y += 16;
+
+      // Seller distribution
+      ensureY(22);
+      doc.setFont('helvetica','bold');
+      doc.setFontSize(7.5);
+      doc.setTextColor(...C.textL);
+      txt('SELLER DISTRIBUTION', ML, y);
+      y += 4;
+
+      const tr=parseInt(r.topRated)||0, l2=parseInt(r.level2)||0,
+            l1=parseInt(r.level1)||0, ns=parseInt(r.newSellers)||0;
+
+      doc.autoTable({
+        startY: y,
+        head: [['Top Rated','Level 2','Level 1','New Sellers','Total']],
+        body: [[tr, l2, l1, ns, tr+l2+l1+ns]],
+        theme: 'grid',
+        headStyles: { fillColor: C.card, textColor: C.textM, fontStyle:'bold', fontSize:7, lineColor:[45,45,55], lineWidth:0.2 },
+        bodyStyles: { fillColor: C.surface, textColor: C.textD, fontSize:9, halign:'center', fontStyle:'bold', lineColor:[45,45,55], lineWidth:0.2 },
+        margin: { left:ML, right:MR }
+      });
+      y = doc.lastAutoTable.finalY + 7;
+
+      // Competitor Gig Entries
+      if (r.gigs && r.gigs.some(g=>g.title||g.link||g.description)) {
+        ensureY(16);
+        doc.setFont('helvetica','bold');
+        doc.setFontSize(7.5);
+        doc.setTextColor(...C.textL);
+        txt('COMPETITOR GIG ENTRIES', ML, y);
+        y += 5;
+
+        r.gigs.forEach((g, gi) => {
+          if (!g.title && !g.link && !g.description) return;
+
+          // estimate box height
+          let bh = 10;
+          if (g.title) {
+            const tl = doc.splitTextToSize(g.title, UW-8);
+            bh += tl.length * 4.5 + 3;
+          }
+          if (g.link) bh += 6;
+          if (g.description) {
+            const dl = doc.splitTextToSize(g.description, UW-8);
+            bh += Math.min(dl.length, 7) * 4 + 4;
+          }
+          bh = Math.max(bh, 18);
+
+          ensureY(bh + 4);
+
+          // box background
+          doc.setFillColor(...C.surface);
+          doc.roundedRect(ML, y, UW, bh, 1.5, 1.5, 'F');
+
+          // gig # badge
+          doc.setFillColor(...C.accent);
+          doc.roundedRect(ML+2, y+2, 16, 5.5, 0.8, 0.8, 'F');
+          doc.setFont('helvetica','bold');
+          doc.setFontSize(6.5);
+          doc.setTextColor(...C.white);
+          txt(`Gig #${gi+1}`, ML+10, y+5.8, {align:'center'});
+
+          let gy = y + 10;
+
+          if (g.title) {
+            doc.setFont('helvetica','bold');
+            doc.setFontSize(8.5);
+            doc.setTextColor(...C.textD);
+            const tl = doc.splitTextToSize(g.title, UW-8);
+            doc.text(tl, ML+4, gy);
+            gy += tl.length * 4.5 + 2;
+          }
+
+          if (g.link) {
+            doc.setFont('helvetica','normal');
+            doc.setFontSize(7);
+            doc.setTextColor(...C.blue);
+            txt(g.link.slice(0,90), ML+4, gy);
+            gy += 5;
+          }
+
+          if (g.description) {
+            doc.setFont('helvetica','normal');
+            doc.setFontSize(7.5);
+            doc.setTextColor(...C.textM);
+            const dl = doc.splitTextToSize(g.description, UW-8);
+            const show = dl.slice(0,7);
+            doc.text(show, ML+4, gy);
+            if (dl.length > 7) {
+              gy += show.length * 4 + 1;
+              doc.setFontSize(6.5);
+              doc.setTextColor(...C.textL);
+              txt(`[+${dl.length-7} more lines truncated]`, ML+4, gy);
+            }
+          }
+
+          y = y + bh + 4;
+        });
+      }
+
+      // Strategy notes
+      if (r.notes) {
+        ensureY(16);
+        doc.setFont('helvetica','bold');
+        doc.setFontSize(7.5);
+        doc.setTextColor(...C.textL);
+        txt('STRATEGY NOTES', ML, y);
+        y += 4;
+        doc.setFont('helvetica','italic');
+        doc.setFontSize(7.5);
+        doc.setTextColor(...C.textM);
+        const nl = doc.splitTextToSize(r.notes, UW);
+        doc.text(nl.slice(0,5), ML, y);
+        y += nl.slice(0,5).length * 4 + 2;
+      }
+
+      // Divider
+      if (ri < records.length - 1) {
+        y += 5;
+        ensureY(4);
+        doc.setDrawColor(45,45,55);
+        doc.setLineWidth(0.25);
+        doc.line(ML, y, PW-MR, y);
+        y += 7;
+      }
+    });
+
+    // ── FOOTER on every page ──
+    const total = doc.getNumberOfPages();
+    for (let p=1; p<=total; p++) {
+      doc.setPage(p);
+      doc.setFillColor(...C.surface);
+      doc.rect(0, PH-9, PW, 9, 'F');
+      doc.setFont('helvetica','normal');
+      doc.setFontSize(6.5);
+      doc.setTextColor(...C.textL);
+      txt(`GigLens Keyword Research  ·  Page ${p} of ${total}`, ML, PH-3.5);
+      txt('Generated ' + new Date().toLocaleString(), PW-MR, PH-3.5, {align:'right'});
+    }
+
+    const fname = 'giglens-' + new Date().toISOString().slice(0,10) + '.pdf';
+    doc.save(fname);
+    toast('PDF saved — ' + fname);
+  } catch(e) {
+    console.error('PDF error:', e);
+    toast('PDF failed: ' + e.message);
+  } finally {
+    document.getElementById('pdfOverlay').classList.remove('on');
+  }
+}
+
+// boot
+load();
+</script>
+</body>
+</html>
